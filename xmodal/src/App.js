@@ -1,8 +1,9 @@
 import './App.css';
+import Modal from './Components/Modal';
 
 function App() {
   return (
-    <h1>Hi</h1>
+    <Modal />
   );
 }
 
