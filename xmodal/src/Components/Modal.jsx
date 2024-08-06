@@ -21,7 +21,7 @@ export default function Modal() {
     }
 
     if (currentDate < dobDate) {
-      alert("please enter a valid date.");
+      alert("Invalid date of birth. Date of birth cannot be in the future.");
     }
   };
 
