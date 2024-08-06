@@ -5,6 +5,7 @@ export default function Modal() {
   const [isOpen, setIsOpen] = useState(false);
   const [phone, setPhone] = useState("");
   const [dob, setDob] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleClick = () => {
     setIsOpen(true);
@@ -15,6 +16,11 @@ export default function Modal() {
 
     const currentDate = new Date();
     const dobDate = new Date(dob);
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Invalid email. Please check your email address.');
+    }
 
     if (phone.length !== 10) {
       alert("Invalid phone number. Please enter a 10-digit phone number.");
@@ -29,7 +35,9 @@ export default function Modal() {
     <>
       <div className="hb">
         <h1>User Details Modal</h1>
-        <button className="primary-button" onClick={handleClick}>Open Form</button>
+        <button className="primary-button" onClick={handleClick}>
+          Open Form
+        </button>
 
         {isOpen && (
           <div className="modal">
@@ -40,7 +48,14 @@ export default function Modal() {
                 <input type="text" id="username" name="username" required />
 
                 <label htmlFor="email">Email Address:</label>
-                <input type="email" id="email" name="email" required />
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
 
                 <label htmlFor="phone">Phone Number:</label>
                 <input
