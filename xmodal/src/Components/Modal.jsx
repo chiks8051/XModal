@@ -3,7 +3,7 @@ import "./Modal.css";
 
 export default function Modal() {
   const [isOpen, setIsOpen] = useState(false);
-  const [number, setNumber] = useState("");
+  const [phone, setPhone] = useState("");
   const [dob, setDob] = useState("");
 
   const handleClick = () => {
@@ -16,7 +16,7 @@ export default function Modal() {
     const currentDate = new Date();
     const dobDate = new Date(dob);
 
-    if (number.length !== 10) {
+    if (phone.length !== 10) {
       alert("Invalid phone number. Please enter a 10-digit phone number.");
     }
 
@@ -29,9 +29,7 @@ export default function Modal() {
     <>
       <div className="hb">
         <h1>User Details Modal</h1>
-        <button className="primary-button" onClick={handleClick}>
-          Open Form
-        </button>
+        <button className="primary-button" onClick={handleClick}>Open Form</button>
 
         {isOpen && (
           <div className="modal">
@@ -44,13 +42,13 @@ export default function Modal() {
                 <label htmlFor="email">Email Address:</label>
                 <input type="email" id="email" name="email" required />
 
-                <label htmlFor="number">Phone Number:</label>
+                <label htmlFor="phone">Phone Number:</label>
                 <input
-                  type="number"
+                  type="phone"
                   id="phone"
-                  name="number"
-                  value={number}
-                  onChange={(e) => setNumber(e.target.value)}
+                  name="phone"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   required
                 />
 
