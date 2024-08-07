@@ -17,10 +17,10 @@ export default function Modal() {
     const currentDate = new Date();
     const dobDate = new Date(dob);
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        alert('Invalid email. Please check your email address.');
-    }
+    // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // if (!emailRegex.test(email)) {
+    //     alert('Invalid email. Please check your email address.');
+    // }
 
     if (phone.length !== 10) {
       alert("Invalid phone number. Please enter a 10-digit phone number.");
@@ -59,7 +59,7 @@ export default function Modal() {
 
                 <label htmlFor="phone">Phone Number:</label>
                 <input
-                  type="phone"
+                  type="number"
                   id="phone"
                   name="phone"
                   value={phone}
