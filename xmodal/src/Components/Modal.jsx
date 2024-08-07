@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Modal.css";
 
 export default function Modal() {
@@ -6,6 +6,8 @@ export default function Modal() {
   const [phone, setPhone] = useState("");
   const [dob, setDob] = useState("");
   const [email, setEmail] = useState("");
+
+  const modalRef = useRef(null);
 
   const handleClick = () => {
     setIsOpen(true);
@@ -19,7 +21,7 @@ export default function Modal() {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-        alert('Invalid email. Please check your email address.');
+      alert("Invalid email. Please check your email address.");
     }
 
     if (phone.length !== 10) {
@@ -30,9 +32,29 @@ export default function Modal() {
       alert("Invalid date of birth. Date of birth cannot be in the future.");
     }
     setIsOpen(false);
-
-    console.log(phone,dob)
+    setPhone("");
+    setDob("");
+    setEmail("");
   };
+
+  const handleClickOutside = (event) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    // Clean up the event listener on component unmount
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   return (
     <>
@@ -44,7 +66,7 @@ export default function Modal() {
 
         {isOpen && (
           <div className="modal">
-            <div className="modal-content">
+            <div className="modal-content" ref={modalRef}>
               <h1>Fill Details</h1>
               <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username:</label>
