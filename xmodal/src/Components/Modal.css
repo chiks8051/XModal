@@ -2,7 +2,7 @@
   display: grid;
   place-items: center;
 }
-.primary-button {
+.submit-button {
   background-color: #007bff;
   border-radius: 5px;
   padding: 10px 20px;

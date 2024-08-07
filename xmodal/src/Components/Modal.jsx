@@ -17,10 +17,10 @@ export default function Modal() {
     const currentDate = new Date();
     const dobDate = new Date(dob);
 
-    // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    // if (!emailRegex.test(email)) {
-    //     alert('Invalid email. Please check your email address.');
-    // }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Invalid email. Please check your email address.');
+    }
 
     if (phone.length !== 10) {
       alert("Invalid phone number. Please enter a 10-digit phone number.");
@@ -29,13 +29,16 @@ export default function Modal() {
     if (currentDate < dobDate) {
       alert("Invalid date of birth. Date of birth cannot be in the future.");
     }
+    setIsOpen(false);
+
+    console.log(phone,dob)
   };
 
   return (
     <>
       <div className="hb">
         <h1>User Details Modal</h1>
-        <button className="primary-button" onClick={handleClick}>
+        <button className="submit-button" onClick={handleClick}>
           Open Form
         </button>
 
@@ -59,7 +62,7 @@ export default function Modal() {
 
                 <label htmlFor="phone">Phone Number:</label>
                 <input
-                  type="number"
+                  type="text"
                   id="phone"
                   name="phone"
                   value={phone}
@@ -77,7 +80,7 @@ export default function Modal() {
                   required
                 />
 
-                <button type="submit" className="primary-button">
+                <button type="submit" className="submit-button">
                   Submit
                 </button>
               </form>
